@@ -20,6 +20,6 @@
 
 
 ## 🛠 Outros
-[editável]
+[editar mais detalhes]
 
 
