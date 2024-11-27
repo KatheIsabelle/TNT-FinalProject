@@ -5,16 +5,16 @@ m_ProjectFiles:
     m_ContentTrackingEnabled: 1
     m_ModificationDate:
       serializedVersion: 2
-      ticks: 638683266683546059
-    m_Hash: 2186667179
+      ticks: 638683298635365398
+    m_Hash: 3431424667
   m_LockFileStatus:
     m_FilePath: C:/Users/KatheIsabelle/TNT-Final-Project/FinalProjectTNT/Packages/packages-lock.json
     m_PathExists: 1
     m_ContentTrackingEnabled: 1
     m_ModificationDate:
       serializedVersion: 2
-      ticks: 638683266684211280
-    m_Hash: 3649843712
+      ticks: 638683298635395399
+    m_Hash: 1355640448
 m_EmbeddedPackageManifests:
   m_ManifestsStatus: {}
 m_LocalPackages:

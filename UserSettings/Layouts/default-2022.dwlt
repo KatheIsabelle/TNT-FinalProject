@@ -19,7 +19,7 @@ MonoBehaviour:
     width: 1366
     height: 725
   m_ShowMode: 4
-  m_Title: Hierarchy
+  m_Title: Project
   m_RootView: {fileID: 2}
   m_MinSize: {x: 875, y: 300}
   m_MaxSize: {x: 10000, y: 10000}
@@ -120,7 +120,7 @@ MonoBehaviour:
   m_MinSize: {x: 300, y: 100}
   m_MaxSize: {x: 24288, y: 16192}
   vertical: 0
-  controlID: 41
+  controlID: 101
   draggingID: 0
 --- !u!114 &6
 MonoBehaviour:
@@ -416,9 +416,9 @@ MonoBehaviour:
   m_SceneHierarchy:
     m_TreeViewState:
       scrollPos: {x: 0, y: 0}
-      m_SelectedIDs: d2f9ffff
+      m_SelectedIDs: 
       m_LastClickedID: 0
-      m_ExpandedIDs: 28fbffff
+      m_ExpandedIDs: 28effffffaf1ffff90580000
       m_RenameOverlay:
         m_UserAcceptedRename: 0
         m_Name: 
@@ -1044,7 +1044,7 @@ MonoBehaviour:
     m_SkipHidden: 0
     m_SearchArea: 1
     m_Folders:
-    - Assets/Assets/Scripts
+    - Assets
     m_Globs: []
     m_OriginalText: 
     m_ImportLogFlags: 0
@@ -1052,16 +1052,16 @@ MonoBehaviour:
   m_ViewMode: 1
   m_StartGridSize: 71
   m_LastFolders:
-  - Assets/Assets/Scripts
+  - Assets
   m_LastFoldersGridSize: 71
   m_LastProjectPath: C:\Users\KatheIsabelle\TNT-Final-Project\FinalProjectTNT
   m_LockTracker:
     m_IsLocked: 0
   m_FolderTreeState:
     scrollPos: {x: 0, y: 0}
-    m_SelectedIDs: 26570000
-    m_LastClickedID: 22310
-    m_ExpandedIDs: 000000000657000008570000
+    m_SelectedIDs: 74590000
+    m_LastClickedID: 22900
+    m_ExpandedIDs: 000000000a1a000074590000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -1089,7 +1089,7 @@ MonoBehaviour:
     scrollPos: {x: 0, y: 0}
     m_SelectedIDs: 
     m_LastClickedID: 0
-    m_ExpandedIDs: 000000000657000008570000
+    m_ExpandedIDs: 000000000a1a000074590000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -1116,7 +1116,7 @@ MonoBehaviour:
   m_ListAreaState:
     m_SelectedInstanceIDs: 
     m_LastClickedInstanceID: 0
-    m_HadKeyboardFocusLastEvent: 0
+    m_HadKeyboardFocusLastEvent: 1
     m_ExpandedInstanceIDs: c6230000fa670000f86700001c640000226b00005074000044740000e0730000387400003c7400004074000096700000f4640000ec640000fc6400009463000024650000966c000072670000fe5f00009a6c0000b06b0000c67500007c62000072600000d0640000da640000d2640000d6640000f2720000a27100003c6500003865000036650000ee6e0000f0650000628b00002e6900001c690000546d0000366700003a6700003e67000074f1000078f10000f2ef000094020000eca00000aa5f00004c830000b4740000be7400005e860000008400007c840000dcaa0000eaaa00005cab0000be830000fc7e000092800000b2870000268b0000368e0000a28c00000892000066920000b07d000046cb0000fac90000fcc900000eca000078ca0000e8c000000ac00000fcb80000aabf0000ded6000004c40000eac70000ce7c000040b6000044b600004c7d0000b48b0000ea7d000078d500007ad500003e7f0000407f0000a47f0000148e00003cba0000d08e00009cf2000048cc000060cc000090cd0000a8a700003a7d0000b4ca0000a88c0000a68c0000e23401007a37010040d100006e800000dec50000facb00004492000070ea0000b4e9000068ed000026720000d86c00007c760000de910000ae6d0000407d000072300100b492000000000000eadc0000f8dc00007203010036030100d60201009c950000829c0000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
