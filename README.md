@@ -21,5 +21,6 @@
 
 ## 🛠 Outros
 [editar mais detalhes]
+removing .ignore
 
 
