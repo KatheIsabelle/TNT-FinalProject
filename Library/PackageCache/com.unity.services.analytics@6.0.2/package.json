@@ -1,0 +1,50 @@
+{
+  "name": "com.unity.services.analytics",
+  "displayName": "Analytics",
+  "version": "6.0.2",
+  "unity": "2021.3",
+  "description": "The Unity Analytics package automatically collects core events and user properties when someone uses your game or application, and enables you to track specific in-game actions your user performs by defining custom events. The data collected from this package is surfaced in the Unity dashboard where you can use it to gather user insights, segment your player base and make informed decisions around the optimization of your game.",
+  "dependencies": {
+    "com.unity.ugui": "1.0.0",
+    "com.unity.modules.jsonserialize": "1.0.0",
+    "com.unity.services.core": "1.12.4"
+  },
+  "samples": [
+    {
+      "displayName": "Standard Events",
+      "description": "Example of using the predefined standardized products, including a demo scene",
+      "path": "Samples~/StandardEvents"
+    }
+  ],
+  "_upm": {
+    "gameService": {
+      "genericDashboardUrl": "https://cloud.unity.com/analytics",
+      "projectDashboardUrl": "https://cloud.unity.com/home/organizations/{0}/projects/{1}/environments/default/analytics/v2/about",
+      "projectDashboardUrlType": "OrganizationKeyAndProjectGuid",
+      "configurePath": "Project/Services/Analytics - Gaming Services"
+    },
+    "supportedPlatforms": [
+      "Android",
+      "iOS",
+      "Linux",
+      "Mac",
+      "PC",
+      "Windows 8.1 Universal",
+      "Windows 10 Universal",
+      "WebGL"
+    ],
+    "changelog": "### Fixed\n\n* Go To Dashboard link in Package Manager in 2022 and newer editor versions now leads to the correct landing page instead of an unrelated error page\n* Numerous public API elements that were missing XmlDoc comments now have them\n* Setting ExternalUserId before enabling the SDK for the first time now correctly records a newPlayer event if it differs from the last seen user ID\n* Changing ExternalUserId while data collection is enabled now correctly starts a new session and records start-up events\n* Changing ExternalUserId while data collection is disabled now correctly records start-up events when it is (re)enabled"
+  },
+  "relatedPackages": {
+    "com.unity.services.analytics.tests": "6.0.2"
+  },
+  "upmCi": {
+    "footprint": "d3008e531a3ec4fe6ed5ca60e8fb2cc5612f7e89"
+  },
+  "documentationUrl": "https://docs.unity3d.com/Packages/com.unity.services.analytics@6.0/manual/index.html",
+  "repository": {
+    "url": "https://github.cds.internal.unity3d.com/unity/operate-services-sdk.git",
+    "type": "git",
+    "revision": "02faa03349f9effb35a95ba25843dbef32bb37e8"
+  }
+}
