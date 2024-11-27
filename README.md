@@ -20,6 +20,7 @@
 
 
 ## 🛠 Outros
-adding prefab
+[editar mais detalhes]
+removing .ignore
 
 
