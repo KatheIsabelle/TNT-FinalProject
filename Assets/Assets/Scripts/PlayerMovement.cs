@@ -15,7 +15,7 @@ public class PlayerMovement : MonoBehaviour
     private Animator animator;
 
     [Header ("Var Move and Jump")]
-    public float velocity = 2f;  
+    public float velocity = 10f;  
     private bool isGround;  //verifica se está no chão
     private float yForce;  //força do salto 
 
@@ -72,7 +72,7 @@ public class PlayerMovement : MonoBehaviour
         }
         
         //chama animação de movimento quando movimento é dif de zero em xyz
-        animator.SetBool("Move", movimento != Vector3.zero);
+        animator.SetBool("isMoving", movimento != Vector3.zero);
        
     }
 
