@@ -88,14 +88,14 @@ public class PlayerMovement : MonoBehaviour
         if(Input.GetKeyDown(KeyCode.Space) && isGround)
         {   
             //adiciona força no eixo y e ativa animação
-            yForce = 15f;
+            yForce = 25f;
             animator.SetTrigger("Jump");
         }
 
-        if(yForce > -9.81f)
+        if(yForce > -30f)
         {
             //adiciona força no eixo y
-            yForce += -9.8f * Time.deltaTime; 
+            yForce += -30f * Time.deltaTime; 
         }
 
         //move player no eixo y de acordo com a força do pulo
