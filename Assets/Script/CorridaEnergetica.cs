@@ -102,12 +102,17 @@ public class CorridaEnergetica : MonoBehaviour
 
     void AtualizaCamera(Transform p1, Transform p2, Transform p3, Transform p4)
     {
+        // Determina o jogador que está mais à frente no eixo X
         Transform lider = p1;
         if (p2.position.x > lider.position.x) lider = p2;
         if (p3.position.x > lider.position.x) lider = p3;
         if (p4.position.x > lider.position.x) lider = p4;
 
-        Vector3 novaPosicao = new Vector3(lider.position.x, mainCamera.transform.position.y, mainCamera.transform.position.z);
+        // Define a nova posição da câmera, apenas ajustando o eixo X
+        Vector3 novaPosicao = new Vector3(lider.position.x + 32, mainCamera.transform.position.y, mainCamera.transform.position.z);
+
+        // Move suavemente a câmera para a nova posição
         mainCamera.transform.position = Vector3.Lerp(mainCamera.transform.position, novaPosicao, Time.deltaTime * cameraFollowSpeed);
     }
+
 }
