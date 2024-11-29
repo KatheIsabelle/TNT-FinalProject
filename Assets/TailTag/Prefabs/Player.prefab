@@ -151,4 +151,3 @@ MonoBehaviour:
   playerId: 0
   speed: 10
   hasTail: 0
-  cooldownTime: 1

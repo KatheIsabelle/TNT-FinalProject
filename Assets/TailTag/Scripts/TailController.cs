@@ -2,25 +2,50 @@ using UnityEngine;
 
 public class TailController : MonoBehaviour
 {
-    private bool isPickedUp = false;
-
     private void OnTriggerEnter(Collider other)
     {
-        if (isPickedUp) return;
-
+        // Verifica se o objeto que colidiu com a cauda é um jogador
         if (other.CompareTag("Player"))
         {
-            PlayerControllerTail player = other.GetComponent<PlayerControllerTail>();
-            if (player != null)
+            // Obtém o script do jogador que colidiu com a cauda
+            PlayerControllerTail newPlayer = other.GetComponent<PlayerControllerTail>();
+
+            // Verifica se o jogador não tem cauda
+            if (newPlayer != null && !newPlayer.hasTail)
             {
-                isPickedUp = true;
+                // Procura o jogador atual que possui a cauda (o que está com a cauda agora)
+                PlayerControllerTail currentOwner = transform.parent?.GetComponent<PlayerControllerTail>();
 
-                // Marca o jogador como possuidor da cauda
-                player.hasTail = true;
+                // Se houver um jogador com a cauda, ele perde a cauda
+                if (currentOwner != null)
+                {
+                    // Atualiza o estado do jogador atual para que ele não tenha mais cauda
+                    currentOwner.hasTail = false;
 
-                // Move a cauda para o jogador
-                transform.parent = player.transform;
-                transform.localPosition = new Vector3(0, 0.5f, -0.5f);
+                    // Libera a física da cauda para que ela se mova livremente
+                    Rigidbody currentOwnerRb = transform.GetComponent<Rigidbody>();
+                    if (currentOwnerRb != null)
+                    {
+                        currentOwnerRb.isKinematic = false; // Reabilita a física da cauda
+                    }
+
+                    // Desvincula a cauda do jogador atual
+                    transform.SetParent(null); // Remove a cauda do jogador atual
+                }
+
+                // O novo jogador recebe a cauda
+                newPlayer.hasTail = true;
+
+                // Torna a cauda filha do novo jogador
+                transform.SetParent(newPlayer.transform);
+                transform.localPosition = new Vector3(0, 0.5f, -0.5f); // Ajusta a posição da cauda
+
+                // Desativa a física da cauda para que ela se mova com o novo jogador
+                Rigidbody tailRb = transform.GetComponent<Rigidbody>();
+                if (tailRb != null)
+                {
+                    tailRb.isKinematic = true; // Desabilita a física para que a cauda siga o jogador
+                }
             }
         }
     }
