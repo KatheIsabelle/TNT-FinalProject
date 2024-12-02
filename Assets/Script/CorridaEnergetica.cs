@@ -5,7 +5,6 @@ using UnityEngine.UI;
 
 public class CorridaEnergetica : MonoBehaviour
 {
-    // Botões disponíveis para cada jogador (mapeados para controle PS4)
     private string[] botoesDisponiveis = { "joystick button 1", "joystick button 2", "joystick button 0", "joystick button 3" };
 
     private string botaoCertoPlayer1, botaoCertoPlayer2, botaoCertoPlayer3, botaoCertoPlayer4;
@@ -14,6 +13,7 @@ public class CorridaEnergetica : MonoBehaviour
     public Image iconeBotaoPlayer1, iconeBotaoPlayer2, iconeBotaoPlayer3, iconeBotaoPlayer4;
     public Sprite[] botoesSprites;
     public Transform player1, player2, player3, player4;
+    public Transform empty1, empty2, empty3, empty4;
     public Camera mainCamera;
     public Canvas canvas;
 
@@ -71,48 +71,81 @@ public class CorridaEnergetica : MonoBehaviour
     IEnumerator MovimentaJogadoresAposDelay()
     {
         aguardandoDelay = true;
-        yield return new WaitForSeconds(18f); // Tempo antes de desativar comandos
+        yield return new WaitForSeconds(5f); // Tempo antes de desativar comandos
 
         canvas.gameObject.SetActive(false);
         comandosAtivos = false;
 
-        float distanciaPlayer1 = pontosPlayer1 * 10f;
-        float distanciaPlayer2 = pontosPlayer2 * 10f;
-        float distanciaPlayer3 = pontosPlayer3 * 10f;
-        float distanciaPlayer4 = pontosPlayer4 * 10f;
-
-        Vector3 destino1 = player1.position + Vector3.right * distanciaPlayer1;
-        Vector3 destino2 = player2.position + Vector3.right * distanciaPlayer2;
-        Vector3 destino3 = player3.position + Vector3.right * distanciaPlayer3;
-        Vector3 destino4 = player4.position + Vector3.right * distanciaPlayer4;
-
-        float tempo = 0;
-        while (tempo < 1f)
+        // Lista de jogadores com os seus empty objects
+        List<(Transform jogador, Transform empty, int pontos)> jogadores = new List<(Transform, Transform, int)>
         {
-            player1.position = Vector3.Lerp(player1.position, destino1, tempo);
-            player2.position = Vector3.Lerp(player2.position, destino2, tempo);
-            player3.position = Vector3.Lerp(player3.position, destino3, tempo);
-            player4.position = Vector3.Lerp(player4.position, destino4, tempo);
+            (player1, empty1, pontosPlayer1),
+            (player2, empty2, pontosPlayer2),
+            (player3, empty3, pontosPlayer3),
+            (player4, empty4, pontosPlayer4)
+        };
 
-            AtualizaCamera(player1, player2, player3, player4);
-            tempo += Time.deltaTime * playerMoveSpeed;
-            yield return null;
+        // Ordena os jogadores pela pontuação
+        jogadores.Sort((a, b) => b.pontos.CompareTo(a.pontos));
+
+        // Define a posição final dos empty objects baseados na classificação
+        for (int i = 0; i < jogadores.Count; i++)
+        {
+            Transform jogador = jogadores[i].jogador;
+            Transform empty = jogadores[i].empty;
+
+            // Define a posição final para os empty objects
+            empty.position = new Vector3(
+                jogador.position.x + (10 * (i + 1)), // Distância crescente baseada na classificação
+                jogador.position.y,
+                jogador.position.z
+            );
+        }
+
+        // Move os jogadores e a câmera gradualmente
+        bool movimentacaoCompleta = false;
+        while (!movimentacaoCompleta)
+        {
+            movimentacaoCompleta = true;
+
+            for (int i = 0; i < jogadores.Count; i++)
+            {
+                var (jogador, empty, _) = jogadores[i];
+
+                // Movimenta cada jogador para seu waypoint (empty object)
+                jogador.position = Vector3.MoveTowards(
+                    jogador.position,
+                    empty.position,
+                    Time.deltaTime * playerMoveSpeed
+                );
+
+                if (Vector3.Distance(jogador.position, empty.position) > 0.01f)
+                {
+                    movimentacaoCompleta = false;
+                }
+            }
+
+            // Atualiza a câmera para seguir o líder
+            AtualizaCamera(jogadores[0].jogador);
+
+            yield return null; // Espera um frame antes de continuar
         }
     }
 
-    void AtualizaCamera(Transform p1, Transform p2, Transform p3, Transform p4)
+    void AtualizaCamera(Transform jogadorLider)
     {
-        // Determina o jogador que está mais à frente no eixo X
-        Transform lider = p1;
-        if (p2.position.x > lider.position.x) lider = p2;
-        if (p3.position.x > lider.position.x) lider = p3;
-        if (p4.position.x > lider.position.x) lider = p4;
+        // Alvo da posição da câmera
+        Vector3 alvoPosicao = new Vector3(
+            jogadorLider.position.x + 38, // Ajuste a câmera para ficar à frente do líder
+            mainCamera.transform.position.y,
+            mainCamera.transform.position.z
+        );
 
-        // Define a nova posição da câmera, apenas ajustando o eixo X
-        Vector3 novaPosicao = new Vector3(lider.position.x + 32, mainCamera.transform.position.y, mainCamera.transform.position.z);
-
-        // Move suavemente a câmera para a nova posição
-        mainCamera.transform.position = Vector3.Lerp(mainCamera.transform.position, novaPosicao, Time.deltaTime * cameraFollowSpeed);
+        // Move a câmera suavemente em direção ao alvo
+        mainCamera.transform.position = Vector3.MoveTowards(
+            mainCamera.transform.position,
+            alvoPosicao,
+            Time.deltaTime * cameraFollowSpeed
+        );
     }
-
 }
