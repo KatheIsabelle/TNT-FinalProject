@@ -10,8 +10,8 @@ public class TailController : MonoBehaviour
             // Obtém o script do jogador que colidiu com a cauda
             PlayerControllerTail newPlayer = other.GetComponent<PlayerControllerTail>();
 
-            // Verifica se o jogador não tem cauda
-            if (newPlayer != null && !newPlayer.hasTail)
+            // Verifica se o jogador não tem cauda e está apto a pegar
+            if (newPlayer != null && !newPlayer.hasTail && newPlayer.CanGrabTail())
             {
                 // Procura o jogador atual que possui a cauda (o que está com a cauda agora)
                 PlayerControllerTail currentOwner = transform.parent?.GetComponent<PlayerControllerTail>();
@@ -19,8 +19,8 @@ public class TailController : MonoBehaviour
                 // Se houver um jogador com a cauda, ele perde a cauda
                 if (currentOwner != null)
                 {
-                    // Atualiza o estado do jogador atual para que ele não tenha mais cauda
                     currentOwner.hasTail = false;
+                    currentOwner.ActivateCooldown(); // Ativa o cooldown para o jogador que perdeu a cauda
 
                     // Libera a física da cauda para que ela se mova livremente
                     Rigidbody currentOwnerRb = transform.GetComponent<Rigidbody>();
