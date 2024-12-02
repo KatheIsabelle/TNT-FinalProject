@@ -38,7 +38,7 @@ public class TailController : MonoBehaviour
 
                 // Torna a cauda filha do novo jogador
                 transform.SetParent(newPlayer.transform);
-                transform.localPosition = new Vector3(0, 0.5f, -0.5f); // Ajusta a posição da cauda
+                transform.localPosition = new Vector3(0, 0.1f, -0.7f); // Ajusta a posição da cauda
 
                 // Desativa a física da cauda para que ela se mova com o novo jogador
                 Rigidbody tailRb = transform.GetComponent<Rigidbody>();

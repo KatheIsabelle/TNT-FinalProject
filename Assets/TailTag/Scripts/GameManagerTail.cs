@@ -33,7 +33,7 @@ public class GameManagerTail : MonoBehaviour
         }
 
         // Instanciar a cauda no centro
-        Instantiate(tailPrefab, new Vector3(0, 2.5f, 50), Quaternion.identity);
+        Instantiate(tailPrefab, new Vector3(-0.7f, 0.7f, 50), Quaternion.Euler(0, -230, 0));
 
         // Instanciar obstáculos dinâmicos
         foreach (Transform spawnPoint in obstacleSpawnPoints)
