@@ -14,11 +14,11 @@ public class GameManagerTail : MonoBehaviour
     public float gameDuration = 60f;
     public TMP_Text timerText; // Texto para o cronômetro
     public TMP_Text winnerText; // Texto para o vencedor
-
+    public TMP_Text rankingText; // Texto para exibir o ranking
 
     private float remainingTime;
 
-    void Start()
+    private void Start()
     {
         remainingTime = gameDuration;
 
@@ -43,7 +43,7 @@ public class GameManagerTail : MonoBehaviour
         }
     }
 
-    void Update()
+    private void Update()
     {
         remainingTime -= Time.deltaTime;
         timerText.text = "Time: " + Mathf.CeilToInt(remainingTime);
@@ -52,24 +52,63 @@ public class GameManagerTail : MonoBehaviour
         {
             EndGame();
         }
+        else
+        {
+            UpdateRanking();
+        }
     }
 
-    void EndGame()
+    private void UpdateRanking()
     {
         GameObject[] players = GameObject.FindGameObjectsWithTag("Player");
-        GameObject winner = null;
+        System.Array.Sort(players, (player1, player2) =>
+        {
+            int points1 = player1.GetComponent<PlayerControllerTail>().points;
+            int points2 = player2.GetComponent<PlayerControllerTail>().points;
+            return points2.CompareTo(points1); // Ordena de forma decrescente
+        });
 
+        string ranking = "Ranking:\n";
         foreach (var player in players)
         {
             PlayerControllerTail controller = player.GetComponent<PlayerControllerTail>();
-            if (controller.hasTail)
-            {
-                winner = player;
-                break;
-            }
+            ranking += $"{player.name}: {controller.points} pontos\n";
+        }
+        rankingText.text = ranking;
+    }
+
+    private void EndGame()
+    {
+        GameObject[] players = GameObject.FindGameObjectsWithTag("Player");
+
+        // Adiciona pontos finais para os jogadores que estão com a cauda
+        foreach (var player in players)
+        {
+            PlayerControllerTail controller = player.GetComponent<PlayerControllerTail>();
+            controller.AddEndGamePoints();
         }
 
-        winnerText.text = winner != null ? "Winner: " + winner.name : "No Winner!";
-        Time.timeScale = 0;
+        // Ordenar os jogadores pelo número de pontos
+        System.Array.Sort(players, (player1, player2) =>
+        {
+            int points1 = player1.GetComponent<PlayerControllerTail>().points;
+            int points2 = player2.GetComponent<PlayerControllerTail>().points;
+            return points2.CompareTo(points1); // Ordena de forma decrescente
+        });
+
+        // Exibir vencedor
+        PlayerControllerTail winnerController = players[0].GetComponent<PlayerControllerTail>();
+        winnerText.text = $"Winner: {players[0].name} with {winnerController.points} points";
+
+        // Atualizar o ranking com todos os jogadores
+        string ranking = "Final Ranking:\n";
+        for (int i = 0; i < players.Length; i++)
+        {
+            PlayerControllerTail controller = players[i].GetComponent<PlayerControllerTail>();
+            ranking += $"{players[i].name}: {controller.points} pontos\n";
+        }
+        rankingText.text = ranking; // Atualiza a UI com o ranking final
+
+        Time.timeScale = 0; // Pausa o jogo no final
     }
 }
