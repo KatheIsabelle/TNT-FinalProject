@@ -672,11 +672,11 @@ PlayerSettings:
   apiCompatibilityLevel: 6
   activeInputHandler: 2
   windowsGamepadBackendHint: 0
-  cloudProjectId: 
+  cloudProjectId: abfbbd4d-bc14-41cf-b146-a2ab74cdfc98
   framebufferDepthMemorylessMode: 0
   qualitySettingsNames: []
-  projectName: 
-  organizationId: 
+  projectName: FinalProjectTNT 2024-12-06_20-38-25
+  organizationId: unity_1a9e82d5965e4329bd7f
   cloudEnabled: 0
   legacyClampBlendShapeWeights: 0
   hmiLoadingImage: {fileID: 0}
