@@ -3,7 +3,17 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - Player2
+  - Player3
+  - Player4
+  - PlayerIdentifier
+  - redCan
+  - greenCan
+  - powerDown
+  - Player1
+  - purpleCan
+  - deathPlataform
   layers:
   - Default
   - TransparentFX
@@ -11,7 +21,7 @@ TagManager:
   - Platform
   - Water
   - UI
-  - collisionLayer
+  - deathPlatform
   - 
   - 
   - 
