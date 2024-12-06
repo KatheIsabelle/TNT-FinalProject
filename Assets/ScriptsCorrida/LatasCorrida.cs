@@ -16,7 +16,7 @@ public class LatasCorrida : MonoBehaviour
     void Start()
     {
         // Define a inclinação inicial na diagonal
-        transform.rotation = Quaternion.Euler(45, 0, 0); // Inclinação fixa de 45 graus no eixo X
+        transform.rotation = Quaternion.Euler(0, 130, 0); // Inclinação fixa de 45 graus no eixo X
         posicaoInicial = transform.position; // Guarda a posição inicial
         Destroy(gameObject, tempoDeDestruicao);   
     }

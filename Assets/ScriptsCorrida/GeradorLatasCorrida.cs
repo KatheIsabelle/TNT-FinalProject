@@ -9,7 +9,7 @@ public class GeradorLatasCorrida : MonoBehaviour
     public float tempoGeradorLatas = 1f;
     public LayerMask LayerLata;
     public float distanciaDeGeracao = 3f;
-    private float distanciaDoJogadorParaGeracao = 10f;
+    public float distanciaDoJogadorParaGeracao = 10f;
     private GameObject jogador;
     private float quantidadeMaximaDeLatasNaPista = 6f;
     private float quantidadeDeLatasNaPista;
@@ -30,8 +30,6 @@ public class GeradorLatasCorrida : MonoBehaviour
 
             if (contadorTempo >= tempoGeradorLatas)
             {
-                StartCoroutine(GerarUmNovaLata());
-                StartCoroutine(GerarUmNovaLata());
                 StartCoroutine(GerarUmNovaLata());
                 contadorTempo = 0;
             }
@@ -61,7 +59,7 @@ public class GeradorLatasCorrida : MonoBehaviour
             yield return null;
         }
 
-        LatasCorrida latas = Instantiate(Latas, posicaoDeCriacao, Quaternion.Euler(0,130,0)).GetComponent<LatasCorrida>();
+        LatasCorrida latas = Instantiate(Latas, posicaoDeCriacao, transform.rotation).GetComponent<LatasCorrida>();
         latas.meuGerador = this;
         quantidadeDeLatasNaPista++;
     }

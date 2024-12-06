@@ -65,8 +65,20 @@ PrefabInstance:
       value: LataRotulo473_Roxo
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: c55633fdb3cff8f4c87cf50e8925fa86, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: c55633fdb3cff8f4c87cf50e8925fa86, type: 3}
       propertyPath: m_IsActive
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4026016294780357894, guid: c55633fdb3cff8f4c87cf50e8925fa86, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 8590413248167722283, guid: c55633fdb3cff8f4c87cf50e8925fa86, type: 3}
+      propertyPath: m_Layer
+      value: 7
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -75,6 +87,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: c55633fdb3cff8f4c87cf50e8925fa86, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1993488345014139599}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: c55633fdb3cff8f4c87cf50e8925fa86, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 3917641858807113798}
   m_SourcePrefab: {fileID: 100100000, guid: c55633fdb3cff8f4c87cf50e8925fa86, type: 3}
 --- !u!1 &3178865930812413984 stripped
 GameObject:
@@ -104,3 +119,16 @@ CapsuleCollider:
   m_Height: 4.95
   m_Direction: 1
   m_Center: {x: -4.65, y: 2.3, z: 0}
+--- !u!114 &3917641858807113798
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3178865930812413984}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f8ba5ddf956c4fc4c91287cfb383e4de, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  meuGerador: {fileID: 0}

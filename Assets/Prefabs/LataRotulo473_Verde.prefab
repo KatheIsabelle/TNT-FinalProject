@@ -65,8 +65,20 @@ PrefabInstance:
       value: LataRotulo473_Verde
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 3d700c111baadc949b37525ff03ca335, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 3d700c111baadc949b37525ff03ca335, type: 3}
       propertyPath: m_IsActive
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2017416415091308040, guid: 3d700c111baadc949b37525ff03ca335, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 9217445466314926432, guid: 3d700c111baadc949b37525ff03ca335, type: 3}
+      propertyPath: m_Layer
+      value: 7
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -75,6 +87,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 3d700c111baadc949b37525ff03ca335, type: 3}
       insertIndex: -1
       addedObject: {fileID: 9123061326378036221}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 3d700c111baadc949b37525ff03ca335, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: -3509339523202078811}
   m_SourcePrefab: {fileID: 100100000, guid: 3d700c111baadc949b37525ff03ca335, type: 3}
 --- !u!1 &8326932705419033555 stripped
 GameObject:
@@ -104,3 +119,16 @@ CapsuleCollider:
   m_Height: 4.95
   m_Direction: 1
   m_Center: {x: -2.25, y: 2.3, z: 0}
+--- !u!114 &-3509339523202078811
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8326932705419033555}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f8ba5ddf956c4fc4c91287cfb383e4de, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  meuGerador: {fileID: 0}
