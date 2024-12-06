@@ -1,6 +1,6 @@
 ## TNT PROJETO FINAL - SQUAD 2 🚀 🎮
 
-### Tema: 🧠
+### 🧠 Tema: 
 - Ativação para telões em stand ou outros eventos. 2D/3D
 
 ### Membros: 🔗👩‍💻
