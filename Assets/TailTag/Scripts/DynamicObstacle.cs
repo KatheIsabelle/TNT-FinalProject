@@ -17,70 +17,68 @@ public class DynamicObstacle : MonoBehaviour
     public Vector3 rotationAxis = Vector3.up; // Eixo de rotação
     public float rotationSpeed = 50f; // Velocidade de rotação
 
-    // Para a interferência no jogador
-    public int pointsLossOnCollision = 10; // Quantidade de pontos que o jogador perde ao colidir
+    // Intensidade do empurrão
+    public float pushForce = 100f; // Ajuste conforme necessário
 
     void Start()
     {
+        startPosition = transform.position;
+
         if (type == ObstacleType.Moving)
         {
-            startPosition = transform.position;
+            moveDirection.Normalize(); // Garante que a direção esteja normalizada
         }
     }
 
     void Update()
     {
-        if (type == ObstacleType.Moving)
+        switch (type)
         {
-            MoveObstacle();
-        }
-        else if (type == ObstacleType.Rotating)
-        {
-            RotateObstacle();
+            case ObstacleType.Moving:
+                MoveObstacle();
+                break;
+            case ObstacleType.Rotating:
+                RotateObstacle();
+                break;
         }
     }
 
     void MoveObstacle()
     {
-        float offset;
-        if (isContinuousMovement)
-        {
-            offset = Time.time * moveSpeed; // Movimento contínuo
-        }
-        else
-        {
-            offset = Mathf.PingPong(Time.time * moveSpeed, moveDistance); // Movimento de ida e volta
-        }
+        float offset = isContinuousMovement
+            ? Mathf.Repeat(Time.time * moveSpeed, moveDistance) // Movimento contínuo
+            : Mathf.PingPong(Time.time * moveSpeed, moveDistance); // Movimento de ida e volta
 
-        transform.position = startPosition + moveDirection.normalized * offset;
+        transform.position = startPosition + moveDirection * offset;
     }
 
     void RotateObstacle()
     {
-        transform.Rotate(rotationAxis, rotationSpeed * Time.deltaTime);
+        transform.Rotate(rotationAxis.normalized, rotationSpeed * Time.deltaTime);
     }
 
-    // Detecta colisão com o jogador
-    private void OnTriggerEnter(Collider other)
+    private void OnCollisionEnter(Collision collision)
     {
-        // Verifica se o objeto colidido é um jogador
-        if (other.CompareTag("Player"))
+        if (collision.collider.CompareTag("Player"))
         {
-            PlayerControllerTail player = other.GetComponent<PlayerControllerTail>();
-            if (player != null)
+            Rigidbody playerRb = collision.collider.GetComponent<Rigidbody>();
+            if (playerRb != null)
             {
-                ApplyPointsLoss(player);
+                PushPlayer(collision, playerRb);
             }
         }
     }
 
-    // Aplica a perda de pontos no jogador
-    void ApplyPointsLoss(PlayerControllerTail player)
+    void PushPlayer(Collision collision, Rigidbody playerRb)
     {
-        // Verifica se o jogador tem pontos suficientes para perder
-        if (player != null)
-        {
-            player.LosePoints(pointsLossOnCollision); // Chama o método no script do jogador para perder pontos
-        }
+        // Obtém o ponto de contato mais próximo do obstáculo
+        Vector3 contactPoint = collision.contacts[0].point;
+
+        // Calcula a direção do empurrão com base no ponto de contato
+        Vector3 pushDirection = (collision.collider.transform.position - contactPoint).normalized;
+        pushDirection.y = 0; // Garante que não empurre para cima
+
+        // Aplica força ao Rigidbody do jogador
+        playerRb.AddForce(pushDirection * pushForce, ForceMode.Impulse);
     }
 }
