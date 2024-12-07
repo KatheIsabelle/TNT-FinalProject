@@ -4,9 +4,7 @@ using TMPro; // Necessário para TextMeshPro
 
 public class GameManagerTail : MonoBehaviour
 {
-    public GameObject playerPrefab;
     public GameObject tailPrefab;
-    public Transform[] spawnPoints;
 
     public GameObject[] dynamicObstaclePrefabs; // Array de obstáculos dinâmicos
     public Transform[] obstacleSpawnPoints;    // Pontos de spawn dos obstáculos dinâmicos
@@ -21,16 +19,6 @@ public class GameManagerTail : MonoBehaviour
     private void Start()
     {
         remainingTime = gameDuration;
-
-        // Instanciar os jogadores
-        for (int i = 0; i < spawnPoints.Length; i++)
-        {
-            GameObject player = Instantiate(playerPrefab, spawnPoints[i].position, Quaternion.identity);
-            player.name = "Player " + (i + 1);
-
-            PlayerControllerTail controller = player.GetComponent<PlayerControllerTail>();
-            controller.playerId = i + 1;
-        }
 
         // Instanciar a cauda no centro
         Instantiate(tailPrefab, new Vector3(-0.7f, 0.7f, 50), Quaternion.Euler(0, -220, 0));

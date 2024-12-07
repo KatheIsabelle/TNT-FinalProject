@@ -73,8 +73,6 @@ public class PlayerControllerTail : MonoBehaviour
         {
             points = 0;
         }
-
-        // Opcional: Aqui você pode adicionar alguma lógica para mostrar uma mensagem, som ou animação de perda de pontos
         Debug.Log($"{gameObject.name} perdeu {pointsToLose} pontos. Pontuação atual: {points}");
     }
 }
