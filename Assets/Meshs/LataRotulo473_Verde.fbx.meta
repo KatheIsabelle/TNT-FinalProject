@@ -3,7 +3,22 @@ guid: 67d9310dd7055ac4994b1fd32ebd6363
 ModelImporter:
   serializedVersion: 22200
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Cromo
+    second: {fileID: 2100000, guid: e9e477779ba3a094ca8cbdc3f75e5ab5, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Rotulo473
+    second: {fileID: 2100000, guid: 9d6c13a5eccfabb4f976dc5d94a1a163, type: 2}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: LATA_VERDE
+    second: {fileID: 2800000, guid: e21d6661676882648b5a8325c215e6d2, type: 3}
   materials:
     materialImportMode: 2
     materialName: 0

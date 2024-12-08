@@ -3,7 +3,16 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - BlueCan
+  - Platforms/Rotating_1
+  - Platforms/Rotating_2
+  - Platforms/PlatformStop
+  - RedCan
+  - PynkCan
+  - GreenCan
+  - YellowCan
+  - Ground
   layers:
   - Default
   - TransparentFX
