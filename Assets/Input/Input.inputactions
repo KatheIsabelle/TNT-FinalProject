@@ -1,0 +1,358 @@
+{
+    "name": "Input",
+    "maps": [
+        {
+            "name": "Player1",
+            "id": "ac031fc0-a038-4219-9fee-e462b32b129b",
+            "actions": [
+                {
+                    "name": "Xis",
+                    "type": "Button",
+                    "id": "5e1dc0ed-c046-4e33-8ccc-c3a9f021d083",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Bolinha",
+                    "type": "Button",
+                    "id": "6422f11b-0826-4e22-a301-a3775f6f6eca",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Quadrado",
+                    "type": "Button",
+                    "id": "ee458ecb-0583-41b8-9528-74d0ec7bfb3d",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Triangulo",
+                    "type": "Button",
+                    "id": "5fce0a90-0099-47f7-befa-8a3bc7600fbc",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "b4b0f0bd-cc20-4474-a9cc-0588ae382ca1",
+                    "path": "<Gamepad>/buttonSouth",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Xis",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "24e43fe1-0436-41a0-9d0e-cef363de8fa1",
+                    "path": "<Gamepad>/buttonEast",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Bolinha",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "0c62218f-49b9-4d60-a231-9ac24b165120",
+                    "path": "<Gamepad>/buttonWest",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Quadrado",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "fb79c3d1-6d46-4fcf-b44b-a25b778770d7",
+                    "path": "<Gamepad>/buttonNorth",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Triangulo",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        },
+        {
+            "name": "Player2",
+            "id": "bb25dce3-4f8c-4c74-a173-5c85fdafe780",
+            "actions": [
+                {
+                    "name": "Xis",
+                    "type": "Button",
+                    "id": "16897dfa-53ba-493c-84d1-6198396e2cac",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Bolinha",
+                    "type": "Button",
+                    "id": "1ec00f61-f203-4f5a-83e7-465262f3864c",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Quadrado",
+                    "type": "Button",
+                    "id": "74b9bcf7-864c-45fd-a87f-5fa56a5c2e20",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Triangulo",
+                    "type": "Button",
+                    "id": "7d154d6c-1108-4d6b-a87c-5601feee8b24",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "f84a64d2-fd60-4257-8c54-84789a5b762a",
+                    "path": "<Gamepad>/buttonSouth",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Xis",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "2d8b5442-4e5f-42e6-9f20-54435d791e53",
+                    "path": "<Gamepad>/buttonEast",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Bolinha",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "f6470c1e-cff7-4910-956b-94bfaf06efd5",
+                    "path": "<Gamepad>/buttonWest",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Quadrado",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "42302c55-b135-4e8c-a6bf-05247fab9c6d",
+                    "path": "<Gamepad>/buttonNorth",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Triangulo",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        },
+        {
+            "name": "Player3",
+            "id": "edc6514c-6b94-4c13-a238-f8ca5028fbdd",
+            "actions": [
+                {
+                    "name": "Xis",
+                    "type": "Button",
+                    "id": "34c837ed-f94b-4410-a89b-7ab5501d85ff",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Bolinha",
+                    "type": "Button",
+                    "id": "5df0f81c-f075-4451-b7eb-9f86b254cc58",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Quadrado",
+                    "type": "Button",
+                    "id": "7656cd50-d891-462f-bd76-8766c167c921",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Triangulo",
+                    "type": "Button",
+                    "id": "92614aab-22f1-4e1e-9be1-5cd34d46d0f2",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "72476057-9604-4e8a-94d1-4c9e90855485",
+                    "path": "<Gamepad>/buttonSouth",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Xis",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "73a67752-2267-4c56-9704-5d4f975d9151",
+                    "path": "<Gamepad>/buttonEast",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Bolinha",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "0df18d40-1783-4ff0-aeeb-ff80e0a64a05",
+                    "path": "<Gamepad>/buttonWest",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Quadrado",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "40eb6b7d-63e3-4d19-909c-b9ecf77c1c2c",
+                    "path": "<Gamepad>/buttonNorth",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Triangulo",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        },
+        {
+            "name": "Player4",
+            "id": "04e0aaf0-ace7-42c0-889e-996e098f1ee5",
+            "actions": [
+                {
+                    "name": "Xis",
+                    "type": "Button",
+                    "id": "5227c406-85e8-4748-9ca0-d40cc03a82e6",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Bolinha",
+                    "type": "Button",
+                    "id": "0b9927e6-2f14-492c-acd6-4cb7f0751e69",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Quadrado",
+                    "type": "Button",
+                    "id": "d2d83d0e-b0b7-45e1-b39f-178e246f0ecd",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Triangulo",
+                    "type": "Button",
+                    "id": "c15557e5-5703-42a1-8ac5-1a0d9e38bb71",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "c7226ede-d514-4b0f-b68b-c21ab23dade1",
+                    "path": "<Gamepad>/buttonSouth",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Xis",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "8ae9b2ce-a81b-4332-92f9-350efd789410",
+                    "path": "<Gamepad>/buttonEast",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Bolinha",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "4252d017-7c6b-41b3-bb5a-91a29a03efa7",
+                    "path": "<Gamepad>/buttonWest",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Quadrado",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "ba89aff9-1139-4448-abe0-c4bea5bd0df0",
+                    "path": "<Gamepad>/buttonNorth",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Triangulo",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        }
+    ],
+    "controlSchemes": []
+}

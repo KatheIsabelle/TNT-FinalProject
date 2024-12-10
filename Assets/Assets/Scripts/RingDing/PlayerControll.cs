@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class PlayerController : MonoBehaviour
 {
@@ -51,6 +52,10 @@ public class PlayerController : MonoBehaviour
 
     private bool canAttack = true;
 
+
+    private Vector2 movementInput = Vector2.zero;
+    private bool jumped = false;
+    private bool attacked = false;
     #endregion
 
     public static PlayerController Instance; // Instância para acessar este script de outros lugares.
@@ -69,12 +74,27 @@ public class PlayerController : MonoBehaviour
         animator = GetComponent<Animator>();
     }
 
+    public void OnMove(InputAction.CallbackContext context) {
+        movementInput = context.ReadValue<Vector2>();
+    }
+
+    public void OnJump(InputAction.CallbackContext context) {
+        //jumped = context.ReadValue<bool>();
+        jumped = context.action.triggered;
+    }
+
+    public void OnAttack(InputAction.CallbackContext context) {
+        //jumped = context.ReadValue<bool>();
+        attacked = context.action.triggered;
+    }
+
     void Update() 
     {
         ySpeed += Physics.gravity.y * Time.deltaTime;
         Jump();
         Falling();
         CheckCurrentPlatform();
+        //Cheer();
     }
 
     void FixedUpdate()
@@ -181,7 +201,7 @@ public class PlayerController : MonoBehaviour
     }
   */
     private IEnumerator Attack() {
-        if (Input.GetKey(KeyCode.B) && canAttack) {
+        if (attacked && canAttack) {
             animator.SetBool("isGrounded", false);
             animator.SetBool("isJumping", false);
             animator.SetBool("isFalling", false);
@@ -200,8 +220,8 @@ public class PlayerController : MonoBehaviour
     void Move()
     {
         // Captura a entrada do teclado (valores de -1 a 1 para cada eixo).
-        float horizontal = Input.GetAxisRaw("Horizontal"); // Entrada horizontal (A/D ou setas).
-        float vertical = Input.GetAxisRaw("Vertical"); // Entrada vertical (W/S ou setas).
+        float horizontal = movementInput.x; // Entrada horizontal (A/D ou setas).
+        float vertical = movementInput.y; // Entrada vertical (W/S ou setas).
 
         // Define a direção do movimento com base na entrada do jogador.
         inputDirection = new Vector3(horizontal, 0, vertical).normalized;
@@ -241,7 +261,7 @@ public class PlayerController : MonoBehaviour
     void Jump()
     {
         // Checa se o jogador pressionou o botão de pular e está no chão.
-        if (Input.GetButtonDown("Jump") && isGrounded)
+        if (jumped && isGrounded)
         {
             ySpeed = jumpForce;
             // Adiciona uma força vertical para o pulo.
@@ -264,6 +284,16 @@ public class PlayerController : MonoBehaviour
             animator.SetBool("isJumping", false);
             isJumping = false;
             animator.SetBool("isFalling", true);
+        }
+    }
+
+    void Cheer() 
+    {
+        if (Input.GetButtonDown("Fire1")) {
+            animator.SetBool("isMoving", false);
+            animator.SetBool("isFalling", false);
+            animator.SetBool("isJumping", false);
+            animator.SetBool("isCheering", true);
         }
     }
 

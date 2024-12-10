@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class PlayerControllerTail : MonoBehaviour
 {
@@ -7,6 +8,7 @@ public class PlayerControllerTail : MonoBehaviour
     public bool hasTail = false;
     private float cooldownTimer = 0f; // Temporizador para impedir pegar a cauda imediatamente
     public float tailCooldown = 2f; // Tempo de cooldown em segundos
+    //private float gravityScale = -9.81f;
 
     private Rigidbody rb;
 
@@ -14,20 +16,44 @@ public class PlayerControllerTail : MonoBehaviour
     public int points = 0; // Pontuação do jogador
     private float tailTime = 0f; // Tempo com a cauda
 
+    private Vector2 movementInput = Vector2.zero;
+    private bool jumped = false;
+    private bool dashed = false;
+
+
+    private Animator animator; // Referência ao animator do player.
+
     void Start()
     {
         rb = GetComponent<Rigidbody>();
+        animator = GetComponent<Animator>();
+        transform.eulerAngles = new Vector3 (0f, 180f, 0f);
+    }
+
+    public void OnMove(InputAction.CallbackContext context) {
+        movementInput = context.ReadValue<Vector2>();
+    }
+
+    public void OnJump(InputAction.CallbackContext context) {
+        //jumped = context.ReadValue<bool>();
+        jumped = context.action.triggered;
+    }
+
+    public void OnDash(InputAction.CallbackContext context) {
+        //jumped = context.ReadValue<bool>();
+        dashed = context.action.triggered;
     }
 
     void Update()
     {
-        // Controle do jogador baseado no ID
-        float moveHorizontal = Input.GetAxis("Horizontal" + playerId);
-        float moveVertical = Input.GetAxis("Vertical" + playerId);
+        // Controle do jogador
+        float moveHorizontal = movementInput.x;
+        float moveVertical = movementInput.y;
 
-        Vector3 movement = new Vector3(moveHorizontal, 0.0f, moveVertical).normalized;
-        rb.velocity = movement * (hasTail ? speed + 3f : speed);
-
+        Vector3 movement = new Vector3(moveHorizontal, 0f, moveVertical).normalized * (hasTail ? speed + 3f : speed);  
+        rb.velocity = new Vector3 (movement.x, rb.velocity.y, movement.z);
+        float rotatespeed = 10f;
+        transform.forward = Vector3.Slerp(transform.forward, movement, Time.deltaTime * rotatespeed);
         // Atualizar o temporizador de cooldown
         if (cooldownTimer > 0)
         {
@@ -40,6 +66,9 @@ public class PlayerControllerTail : MonoBehaviour
             tailTime += Time.deltaTime;
             points = (int)(tailTime * 5); // 5 pontos por segundo com a cauda
         }
+        animator.SetBool("isMoving", movement != Vector3.zero);
+
+
     }
 
     // Método para ativar o cooldown quando o jogador perde a cauda
