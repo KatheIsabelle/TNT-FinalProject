@@ -2,7 +2,7 @@
     "name": "PlayerControls",
     "maps": [
         {
-            "name": "Players",
+            "name": "Player1",
             "id": "015e36d7-a9c5-4549-ba25-30c509b70573",
             "actions": [
                 {
@@ -44,6 +44,54 @@
                     "processors": "",
                     "groups": "",
                     "action": "Mover",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        },
+        {
+            "name": "Player2",
+            "id": "83fe7b9c-a7bb-48f8-9137-a3b1d15e1c80",
+            "actions": [
+                {
+                    "name": "Mover",
+                    "type": "Value",
+                    "id": "558473ec-b7a3-42ef-a052-d1e4cef924ef",
+                    "expectedControlType": "Vector2",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": true
+                },
+                {
+                    "name": "Pulo",
+                    "type": "Button",
+                    "id": "a266da84-c46d-4fd9-ae74-01bfb719a745",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "98425dcb-aea6-46f5-a0cf-c79b9f86475e",
+                    "path": "<Gamepad>/leftStick",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Mover",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "1b36ec35-1527-4a0d-b1b2-03f3207a5b45",
+                    "path": "<Gamepad>/buttonSouth",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Pulo",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

@@ -14,6 +14,10 @@ public class GeradorLatasCorrida : MonoBehaviour
     private float quantidadeMaximaDeLatasNaPista = 6f;
     private float quantidadeDeLatasNaPista;
 
+    // Variável para controlar geração única
+    public bool gerarApenasUmaLata = false; // Ativar/desativar a geração única
+    private bool lataUnicaGerada = false; // Flag para verificar se a única lata já foi gerada
+
     void Start()
     {
         jogador = GameObject.FindWithTag("Player");
@@ -22,7 +26,19 @@ public class GeradorLatasCorrida : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+
         bool possoGerarLatasDistancia = Vector3.Distance(transform.position, jogador.transform.position) <= distanciaDoJogadorParaGeracao;
+
+        // Caso esteja configurado para gerar apenas uma lata
+        if (gerarApenasUmaLata && possoGerarLatasDistancia)
+        {
+            if (!lataUnicaGerada)
+            {
+                StartCoroutine(GerarUmaUnicaLata());
+                lataUnicaGerada = true; // Marca que já foi gerada
+            }
+            return; // Sai do método para evitar gerar mais latas
+        }
 
         if (possoGerarLatasDistancia && quantidadeDeLatasNaPista < quantidadeMaximaDeLatasNaPista)
         {
@@ -30,7 +46,7 @@ public class GeradorLatasCorrida : MonoBehaviour
 
             if (contadorTempo >= tempoGeradorLatas)
             {
-                StartCoroutine(GerarUmNovaLata());
+                StartCoroutine(GerarUmaNovaLata());
                 contadorTempo = 0;
             }
         }
@@ -47,7 +63,7 @@ public class GeradorLatasCorrida : MonoBehaviour
         Gizmos.DrawWireSphere(transform.position, distanciaDeGeracao);
     }
 
-    IEnumerator GerarUmNovaLata()
+    IEnumerator GerarUmaNovaLata()
     {
         Vector3 posicaoDeCriacao = AleatorizarPosicao();
         Collider[] colisores = Physics.OverlapSphere(posicaoDeCriacao, 1, LayerLata);
@@ -62,6 +78,21 @@ public class GeradorLatasCorrida : MonoBehaviour
         LatasCorrida latas = Instantiate(Latas, posicaoDeCriacao, transform.rotation).GetComponent<LatasCorrida>();
         latas.meuGerador = this;
         quantidadeDeLatasNaPista++;
+    }
+
+    IEnumerator GerarUmaUnicaLata()
+    {
+        LatasCorrida latas = Instantiate(Latas, transform.position, transform.rotation).GetComponent<LatasCorrida>();
+        latas.meuGerador = this;
+
+        // Configura a lata para ser única
+        latas.eLataUnica = true;
+
+        // Ajusta a posição da lata para diminuir o eixo Y
+        Vector3 novaPosicao = latas.transform.position;
+        novaPosicao.y = 0f; // Ajuste o valor para a altura desejada
+        latas.transform.position = novaPosicao;
+        yield return null;
     }
 
     Vector3 AleatorizarPosicao()

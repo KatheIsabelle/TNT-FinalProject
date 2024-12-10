@@ -4,27 +4,37 @@ using UnityEngine;
 
 public class LatasCorrida : MonoBehaviour
 {
-    private float tempoDeDestruicao = 5f;
+    public float tempoDeDestruicao = 5f;
     [HideInInspector]
     public GeradorLatasCorrida meuGerador;
 
-    private float velocidadeFlutuacao = 1f; // Velocidade da flutuação
-    private float amplitudeFlutuacao = 0.3f; // Amplitude do movimento vertical
-    private float velocidadeRotacao = 50f; // Velocidade da rotação diagonal
+    public float velocidadeFlutuacao = 1f; // Velocidade da flutuação
+    public float amplitudeFlutuacao = 0.3f; // Amplitude do movimento vertical
+    public float velocidadeRotacao = 50f; // Velocidade da rotação diagonal
     private Vector3 posicaoInicial;
+
+    // Adicione uma variável para identificar a lata única
+    public bool eLataUnica = false;
 
     void Start()
     {
         // Define a inclinação inicial na diagonal
-        transform.rotation = Quaternion.Euler(0, 130, 0); // Inclinação fixa de 45 graus no eixo X
         posicaoInicial = transform.position; // Guarda a posição inicial
-        Destroy(gameObject, tempoDeDestruicao);   
+        transform.rotation = Quaternion.Euler(0, 130, 0); // Inclinação fixa de 45 graus no eixo X
+        if (!eLataUnica)
+        {
+            Destroy(gameObject, tempoDeDestruicao);
+        }
     }
 
     void Update()
     {
-        Flutuar();
-        RotacionarDiagonal();
+        // Apenas faça as animações se a lata não for única
+        if (!eLataUnica)
+        {
+            Flutuar();
+            RotacionarDiagonal();
+        }
     }
 
     private void RotacionarDiagonal()

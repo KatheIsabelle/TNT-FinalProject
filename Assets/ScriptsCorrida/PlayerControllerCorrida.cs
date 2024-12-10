@@ -2,14 +2,16 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.UI;
 
 public class PlayerControllerCorrida : MonoBehaviour
 {
+    public int playerID;
     private Vector3 direcao;
     private Animator animator;
     public float velocidade = 5;
     private Rigidbody rb;
-    public InterfaceControllerCorrida scriptInterfaceControllerCorrida;
+    public Text textoPonto;
     public float distanciaFrente = 5f;
     private bool caiu = false;
     private int latasPerdidas = 3;
@@ -17,12 +19,14 @@ public class PlayerControllerCorrida : MonoBehaviour
     public Transform pontoFinal; // Posição para onde o jogador irá ao cruzar a linha de chegada
     public Transform cameraFinal; // Posição final da câmera
     private bool cruzouLinhaChegada = false; // Indica se o jogador já cruzou a linha
+    private float pontuacao = 0; // Pontuação do jogador
 
     public float forcaPulo = 7f; // Força do pulo
     private bool estaNoChao = true; // Verifica se o jogador está no chão
     public LayerMask camadaChao; // Camada do chão para detectar colisão
     public Transform detectorChao; // Ponto para detectar o chão
     public float raioDeteccao = 0.2f; // Raio de detecção do chão
+    public Text textoPerdeuLatas;
 
     void Start()
     {
@@ -30,7 +34,7 @@ public class PlayerControllerCorrida : MonoBehaviour
         rb = GetComponent<Rigidbody>();
     }
 
-    void Update()
+    public void Update()
     {
         if (cruzouLinhaChegada) return; // Impede novos movimentos se já terminou
 
@@ -57,7 +61,7 @@ public class PlayerControllerCorrida : MonoBehaviour
         animator.SetBool("NoChao", estaNoChao); // Atualiza a animação de "no chão"
     }
 
-    private void Pular()
+    public void Pular()
     {
         rb.AddForce(Vector3.up * forcaPulo, ForceMode.Impulse);
         animator.SetTrigger("Pular"); // Ativa a animação de pulo
@@ -78,7 +82,7 @@ public class PlayerControllerCorrida : MonoBehaviour
         caiu = false; // Permite que ele caia novamente no futuro
     }
 
-    private void Mover()
+    public void Mover()
     {
         float horizontal = Input.GetAxis("Horizontal");
         float vertical = Input.GetAxis("Vertical");
@@ -97,15 +101,34 @@ public class PlayerControllerCorrida : MonoBehaviour
 
     public void ColetarLatas()
     {
-        scriptInterfaceControllerCorrida.AumentarQuantidadeDeLatasColetadas();
+        pontuacao++;
+        textoPonto.text = $"P{playerID} x{pontuacao}";
+        // Salva a pontuação sempre que coletar uma lata
+        SalvarPontuacao();
+    }
+
+    private void SalvarPontuacao()
+    {
+        PlayerPrefs.SetFloat("PontuacaoJogador", pontuacao); // Salva a pontuação
+        PlayerPrefs.Save(); // Garante que o dado seja salvo imediatamente
+        Debug.Log($"Pontuação salva: {pontuacao}");
     }
 
     public void PerdeLatas(float latasPerdidas)
     {
         if (!imune)
         {
-            scriptInterfaceControllerCorrida.DiminuirQuantidadeLatasColetadas(latasPerdidas);
+            if (pontuacao < latasPerdidas)
+            {
+                pontuacao -= pontuacao;
+            }
+            else
+            {
+                pontuacao -= latasPerdidas;
+            }
+            textoPonto.text = $"P{playerID} x{pontuacao}";
             StartCoroutine(Invencibilidade());
+            StartCoroutine(DesaparecerTexto());
         }
     }
 
@@ -156,6 +179,27 @@ public class PlayerControllerCorrida : MonoBehaviour
 
         // Exibe mensagem de vitória (opcional)
         Debug.Log("Você terminou a corrida!");
+    }
+
+    IEnumerator DesaparecerTexto()
+    {
+        textoPerdeuLatas.gameObject.SetActive(true);
+        Color corTexto = textoPerdeuLatas.color;
+        corTexto.a = 1;
+        textoPerdeuLatas.color = corTexto;
+        yield return new WaitForSeconds(0.5f);
+        float contador = 0;
+        while (textoPerdeuLatas.color.a > 0)
+        {
+            contador += Time.deltaTime / 0.5f;
+            corTexto.a = Mathf.Lerp(1, 0, contador);
+            textoPerdeuLatas.color = corTexto;
+            if (textoPerdeuLatas.color.a <= 0)
+            {
+                textoPerdeuLatas.gameObject.SetActive(false);
+            }
+            yield return null;
+        }
     }
 
 }

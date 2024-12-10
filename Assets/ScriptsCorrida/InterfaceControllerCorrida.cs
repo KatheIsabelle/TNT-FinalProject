@@ -14,7 +14,7 @@ public class InterfaceControllerCorrida : MonoBehaviour
     public void AumentarQuantidadeDeLatasColetadas()
     {
         quantidadeDeLatasColetadas++;
-        textoQuantidadeDeLatasColetadas.text = $"P1 x {quantidadeDeLatasColetadas}";
+        textoQuantidadeDeLatasColetadas.text = $"x {quantidadeDeLatasColetadas}";
     }
 
     public void DiminuirQuantidadeLatasColetadas(float latasPerdidas)
@@ -26,7 +26,7 @@ public class InterfaceControllerCorrida : MonoBehaviour
         {
             quantidadeDeLatasColetadas -= latasPerdidas;
         }
-        textoQuantidadeDeLatasColetadas.text = $"P1 x {quantidadeDeLatasColetadas}";
+        textoQuantidadeDeLatasColetadas.text = $"x {quantidadeDeLatasColetadas}";
         StartCoroutine(DesaparecerTexto());
     }
 
