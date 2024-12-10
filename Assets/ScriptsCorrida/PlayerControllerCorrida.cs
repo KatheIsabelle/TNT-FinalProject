@@ -27,6 +27,8 @@ public class PlayerControllerCorrida : MonoBehaviour
     public Transform detectorChao; // Ponto para detectar o chão
     public float raioDeteccao = 0.2f; // Raio de detecção do chão
     public Text textoPerdeuLatas;
+    // Variável para controlar se o jogador pode se mover
+    private bool movimentoAtivo = false;
 
     void Start()
     {
@@ -36,6 +38,7 @@ public class PlayerControllerCorrida : MonoBehaviour
 
     public void Update()
     {
+        if (!movimentoAtivo) return; // Não permite o movimento se estiver desativado
         if (cruzouLinhaChegada) return; // Impede novos movimentos se já terminou
 
         Mover();
@@ -54,6 +57,11 @@ public class PlayerControllerCorrida : MonoBehaviour
         }
     }
 
+    public void SetMovimentoAtivo(bool ativo)
+    {
+        movimentoAtivo = ativo;
+    }
+
     private void VerificarChao()
     {
         // Detecta se o jogador está no chão usando Physics.CheckSphere
@@ -64,7 +72,7 @@ public class PlayerControllerCorrida : MonoBehaviour
     public void Pular()
     {
         rb.AddForce(Vector3.up * forcaPulo, ForceMode.Impulse);
-        animator.SetTrigger("Pular"); // Ativa a animação de pulo
+        animator.SetTrigger("Pular"); // Ativa a animação de pular
     }
 
     private void Reposicionar()
@@ -109,9 +117,10 @@ public class PlayerControllerCorrida : MonoBehaviour
 
     private void SalvarPontuacao()
     {
-        PlayerPrefs.SetFloat("PontuacaoJogador", pontuacao); // Salva a pontuação
+        string chavePontuacao = $"PontuacaoJogador{playerID}"; // Gera uma chave única
+        PlayerPrefs.SetFloat(chavePontuacao, pontuacao); // Salva a pontuação usando a chave única
         PlayerPrefs.Save(); // Garante que o dado seja salvo imediatamente
-        Debug.Log($"Pontuação salva: {pontuacao}");
+        Debug.Log($"Pontuação do Jogador {playerID} salva: {pontuacao}");
     }
 
     public void PerdeLatas(float latasPerdidas)
