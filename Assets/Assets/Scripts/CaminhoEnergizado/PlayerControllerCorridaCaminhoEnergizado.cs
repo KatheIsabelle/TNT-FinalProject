@@ -157,7 +157,7 @@ public class PlayerControllerCorridaCaminhoEnergizado : MonoBehaviour {
         }
 
         imune = false;
-        velocidade = 5; // Restaura a velocidade do jogador
+        velocidade = 10; // Restaura a velocidade do jogador
     }
 
     public void CruzarLinhaDeChegada() {
@@ -174,7 +174,7 @@ public class PlayerControllerCorridaCaminhoEnergizado : MonoBehaviour {
         float velocidadeFinal = 2f; // Velocidade do jogador ao final
         Vector3 direcao = (pontoFinal.position - transform.position).normalized;
 
-        while (Vector3.Distance(transform.position, pontoFinal.position) > 0.1f) {
+        while (Vector3.Distance(transform.position, pontoFinal.position) > 1f) {
             transform.position += direcao * velocidadeFinal * Time.deltaTime;
             yield return null;
         }

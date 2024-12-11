@@ -8,7 +8,6 @@ public class AttackScriptRingDing : MonoBehaviour
 
     private void OnTriggerEnter(Collider collider) {
 
-        Debug.Log(collider.name);
         // Verifica se o objeto colidido tem o componente Rigidbody
         Rigidbody otherRigidbody = collider.GetComponent<Rigidbody>();
         if (otherRigidbody != null && collider.gameObject.CompareTag("Player")) {

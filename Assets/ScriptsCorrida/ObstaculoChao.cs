@@ -7,7 +7,7 @@ public class ObstaculoChao : MonoBehaviour
     public float alturaMaxima = 5f; // Altura máxima que o objeto irá atingir
     public float velocidade = 2f;  // Velocidade do movimento
     public float tempoParado = 2f; // Tempo que o objeto ficará parado no topo
-    public float latasPerdidas = 5f;
+    public float latasPerdidas = 3f;
 
     private Vector3 posicaoInicial;
 

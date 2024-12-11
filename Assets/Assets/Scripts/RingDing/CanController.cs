@@ -35,9 +35,9 @@ public class CanController : MonoBehaviour
     void PopCan()
     {
         // Remove a latinha da cena
-        Destroy(gameObject);  
+        Destroy(gameObject);
 
         // Atualiza o contador de latinhas no GameController
-        GameController.Instance.OnCanDestroyed();  
+        GameControllerCirculodeEnergia.Instance.OnCanDestroyed();  
     }
 }
