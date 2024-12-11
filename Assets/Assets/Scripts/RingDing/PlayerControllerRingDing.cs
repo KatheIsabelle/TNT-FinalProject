@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class PlayerController : MonoBehaviour
+public class PlayerControllerRingDing : MonoBehaviour
 {
     #region VAR PLAYER
     [Header("Player Movimentos / Posicionamentos")]
@@ -58,7 +58,7 @@ public class PlayerController : MonoBehaviour
     private bool attacked = false;
     #endregion
 
-    public static PlayerController Instance; // Instância para acessar este script de outros lugares.
+    public static PlayerControllerRingDing Instance; // Instância para acessar este script de outros lugares.
     private GameController gameController; // Referência ao controlador principal do jogo.
     private Animator animator; // Referência ao animator do player.
     void Awake()

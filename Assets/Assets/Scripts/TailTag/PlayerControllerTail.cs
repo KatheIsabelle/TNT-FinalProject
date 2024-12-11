@@ -26,6 +26,7 @@ public class PlayerControllerTail : MonoBehaviour
     void Start()
     {
         rb = GetComponent<Rigidbody>();
+        DontDestroyOnLoad(gameObject);
         animator = GetComponent<Animator>();
         transform.eulerAngles = new Vector3 (0f, 180f, 0f);
     }

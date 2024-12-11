@@ -12,10 +12,10 @@ EditorBuildSettings:
     path: Assets/Scenes/PinballMiniGame.unity
     guid: cd3cc27551eac46499afbe917bbdbc2b
   - enabled: 1
-    path: Assets/Scenes/TestMiniGame2.unity
+    path: Assets/Scenes/TestMiniGame3.unity
     guid: c64bf14e49ae2bd4f9e53068f5b747ef
   - enabled: 1
-    path: Assets/Scenes/TestMiniGame3.unity
+    path: Assets/Scenes/TestMiniGame2.unity
     guid: 5419f591802720b4ab6cc8fac0309db6
   - enabled: 1
     path: Assets/Scenes/TestMiniGame4.unity
@@ -23,4 +23,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/TestMiniGame5.unity
     guid: f8ada648a89789d41b7b4275ba016326
+  - enabled: 1
+    path: Assets/Scenes/PodiumScene.unity
+    guid: f46f227c585438c4c8ebe7fcb18c7fc7
   m_configObjects: {}

@@ -5,7 +5,7 @@ using TMPro;
 public class GameController : MonoBehaviour
 {
     //INSTÂNCIAS
-    private PlayerController currentPlayer; // Referência ao PlayerController atual
+    private PlayerControllerRingDing currentPlayer; // Referência ao PlayerController atual
     public static GameController Instance;
 
     
@@ -44,7 +44,7 @@ public class GameController : MonoBehaviour
     void Start()
     {
         // Inicializa a Instância do Player
-        currentPlayer = PlayerController.Instance;
+        currentPlayer = PlayerControllerRingDing.Instance;
 
         // Começa a gerar Latinhas a cada 1 segundo
         InvokeRepeating("TrySpawnCan", 1f, 1f);  // Começa 1 segundo após o início, e repete a cada 1 segundo

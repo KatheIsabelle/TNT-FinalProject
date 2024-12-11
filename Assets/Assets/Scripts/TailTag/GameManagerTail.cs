@@ -1,5 +1,7 @@
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
+using System.Collections;
 using TMPro; // Necessário para TextMeshPro
 
 public class GameManagerTail : MonoBehaviour
@@ -75,20 +77,42 @@ public class GameManagerTail : MonoBehaviour
             int points2 = player2.GetComponent<PlayerControllerTail>().points;
             return points2.CompareTo(points1); // Ordena de forma decrescente
         });
-
-        // Exibir vencedor
-        PlayerControllerTail winnerController = players[0].GetComponent<PlayerControllerTail>();
-        winnerText.text = $"Winner: {players[0].name} with {winnerController.points} points";
-
-        // Atualizar o ranking com todos os jogadores
-        string ranking = "Final Ranking:\n";
-        for (int i = 0; i < players.Length; i++)
-        {
-            PlayerControllerTail controller = players[i].GetComponent<PlayerControllerTail>();
-            ranking += $"{players[i].name}: {controller.points} pontos\n";
+        GameData.playerRankings.Clear();
+        foreach (var player in players) {
+            PlayerControllerTail controller = player.GetComponent<PlayerControllerTail>();
+            GameData.playerRankings.Add(new PlayerData(player.name, controller.points, player));
         }
-        rankingText.text = ranking; // Atualiza a UI com o ranking final
 
-        Time.timeScale = 0; // Pausa o jogo no final
+        // Salva a cena do jogo e carrega a cena do pódio
+        SceneManager.LoadScene("PodiumScene");
+
+        // Após carregar a cena do pódio, garanta que os jogadores tenham a escala certa e estão desabilitados
+        StartCoroutine(EnsureCorrectScaleAndDisableMovement());
+    }
+    // Corrige a escala dos jogadores após a cena do pódio ser carregada
+    private IEnumerator EnsureCorrectScaleAndDisableMovement() {
+        // Aguarde o final da transição de cena
+        yield return new WaitForSeconds(0.5f);
+
+        // Encontre todos os jogadores na nova cena
+        GameObject[] playersInPodium = GameObject.FindGameObjectsWithTag("Player");
+
+        foreach (var player in playersInPodium) {
+            // Resetando a escala dos jogadores para (1, 1, 1)
+            player.transform.localScale = Vector3.one;
+
+            // Desabilitar o controle do jogador
+            PlayerControllerTail controller = player.GetComponent<PlayerControllerTail>();
+            if (controller != null) {
+                controller.enabled = false; // Desabilita o script que controla o movimento do jogador
+            }
+
+            // Se o jogador tiver um Rigidbody, desabilite a movimentação também
+            Rigidbody rb = player.GetComponent<Rigidbody>();
+            if (rb != null) {
+                rb.velocity = Vector3.zero; // Parar qualquer movimento residual
+                rb.isKinematic = true; // Desabilitar interações físicas
+            }
+        }
     }
 }

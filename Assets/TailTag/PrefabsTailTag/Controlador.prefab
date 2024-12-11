@@ -46,6 +46,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rulesPanel: {fileID: 0}
   countdownText: {fileID: 0}
+  startGameImage: {fileID: 0}
+  imageTime: {fileID: 0}
+  imageStart: {fileID: 0}
 --- !u!1 &4917403712091919030
 GameObject:
   m_ObjectHideFlags: 0

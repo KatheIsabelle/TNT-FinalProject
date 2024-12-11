@@ -8,7 +8,7 @@ using TMPro;
 
 public class CorridaEnergeticav2 : MonoBehaviour
 {
-    public PlayerController[] players; // Associe os jogadores no Inspector
+    public PlayerControllerCorridaEnergetica[] players; // Associe os jogadores no Inspector
     public Transform[] jogadores; // Transforms dos jogadores
     public Transform[] linhas; // Posições finais dos jogadores (linhas)
     public Image[] iconesBotoes; // Imagens dos botões para cada jogador
@@ -19,6 +19,7 @@ public class CorridaEnergeticav2 : MonoBehaviour
     public Canvas rankingCanvas; // Canvas para exibir o ranking dos jogadores
     public TMP_Text[] rankingNomes; // Textos para os nomes dos jogadores
     public TMP_Text[] rankingPontos; // Textos para os pontos dos jogadores
+    public TMP_Text timerText; // Texto para o cronômetro
 
     public float playerMoveSpeed = 5f, cameraFollowSpeed = 5f;
     public float pontosPorUnidadeX = 10f; // Cada ponto vale 10 unidades no eixo X
@@ -29,7 +30,10 @@ public class CorridaEnergeticav2 : MonoBehaviour
 
     private bool aguardandoDelay = false, comandosAtivos = true;
 
-    private Dictionary<int, PlayerController> playerIndexMap; // Mapeia índices de jogadores para PlayerController
+    private Dictionary<int, PlayerControllerCorridaEnergetica> playerIndexMap; // Mapeia índices de jogadores para PlayerController
+
+    public float gameDuration = 60f;
+    private float remainingTime;
 
     private void Start()
     {
@@ -41,7 +45,7 @@ public class CorridaEnergeticav2 : MonoBehaviour
 
         botoesCertos = new string[jogadores.Length];
         pontos = new int[jogadores.Length];
-        playerIndexMap = new Dictionary<int, PlayerController>();
+        playerIndexMap = new Dictionary<int, PlayerControllerCorridaEnergetica>();
 
         for (int i = 0; i < jogadores.Length; i++)
         {

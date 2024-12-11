@@ -13,6 +13,12 @@ TagManager:
   - GreenCan
   - YellowCan
   - Ground
+  - redCan
+  - purpleCan
+  - greenCan
+  - Player2
+  - Player3
+  - Player4
   layers:
   - Default
   - TransparentFX
@@ -21,8 +27,8 @@ TagManager:
   - Water
   - UI
   - collisionLayer
-  - 
-  - 
+  - deathPlataform
+  - Lata
   - 
   - 
   - 
